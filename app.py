@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    req=requests.get('http://worldclockapi.com/api/json/est/now')
+    req=requests.get('https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Bangkok')
     data=json.loads(req.text)
     return data
     
