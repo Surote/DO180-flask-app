@@ -1,12 +1,14 @@
 from flask import Flask
 import requests
 import json
+import os
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    req=requests.get('https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Bangkok')
+    req_here=os.getenv(API,"not found")
+    req=requests.get(req_here)
     data=json.loads(req.text)
     return data
     
