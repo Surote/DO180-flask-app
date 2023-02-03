@@ -9,6 +9,13 @@ app = Flask(__name__)
 def hello_world():
     req_here=os.getenv("API","API2")
     req=requests.get("http://"+req_here)
+    
+    if req.status_code != 200:
+        req_here=os.getenv("API2","API")
+        req=requests.get("http://"+req_here)
+    
+    if req.status_code != 200:
+        return 'no API found'
     data=json.loads(req.text)
     return data
     
