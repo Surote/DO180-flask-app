@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    req_here=os.getenv("API","not found")
+    req_here=os.getenv("API","API2")
     req=requests.get("http://"+req_here)
     data=json.loads(req.text)
     return data
