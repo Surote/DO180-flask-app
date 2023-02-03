@@ -11,13 +11,15 @@ def hello_world():
     req=requests.get("http://"+req_here)
     
     if req.status_code != 200:
+        print('API 1 not works!!')
         req_here=os.getenv("API2","API")
-        req=requests.get("http://"+req_here)
-    
-    if req.status_code != 200:
-        return 'no API found'
-    data=json.loads(req.text)
-    return data
+        req2=requests.get("http://"+req_here)
+        data=json.loads(req2.text)
+        return data
+    else:
+        data=json.loads(req.text)
+        return data
+
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
