@@ -1,6 +1,10 @@
-node {
-    checkout scm
-
-    customImage = docker.build("my-image:${env.BUILD_ID}")
-
+pipeline {
+    agent linux-agent
+    stages {
+        stage('Stage 1') {
+            steps {
+                echo 'Hello world!' 
+            }
+        }
+    }
 }
