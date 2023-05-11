@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+      DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    }
     stages {
         stage('Stage checkout') {
             steps {
@@ -11,7 +14,8 @@ pipeline {
         }
         stage('Stage build') {
             steps {
-                sh 'podman build . -t surote/py-test:0.1'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | podman login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh 'podman build . -t surote/py-test-jenkins:0.1'
             }
         }
     }
