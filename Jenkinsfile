@@ -5,7 +5,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello world!' 
-                sh 'java version'
+                sh 'java -version'
                 sh 'ls -alh'
             }
         }
