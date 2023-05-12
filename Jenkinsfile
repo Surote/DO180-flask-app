@@ -18,5 +18,10 @@ pipeline {
                 sh 'podman build . -t docker.io/surote/py-test-jenkins:0.1'
             }
         }
+        stage('Stage push') {
+            steps {
+                sh 'podman push docker.io/surote/py-test-jenkins:0.1'
+            }
+        }
     }
 }
