@@ -8,7 +8,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello world! DEV' 
-                sh 'echo $env.BRANCH_NAME'
+                sh 'echo ${env.BRANCH_NAME}'
                 sh 'ls -alh'
             }
         }
