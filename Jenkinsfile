@@ -7,8 +7,8 @@ pipeline {
         stage('Stage checkout') {
             steps {
                 checkout scm
-                echo 'Hello world! DEV' 
-                sh 'echo ${env.BRANCH_NAME}'
+                echo 'Hello world! DEV' + env.BRANCH_NAME 
+                sh 'echo $BRANCH_NAME'
                 sh 'ls -alh'
             }
         }
