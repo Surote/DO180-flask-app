@@ -7,16 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    try:
-        req_here=os.getenv("API","API2")
-        req=requests.get(req_here)
-        data=json.loads(req.text)
-        return data
-    except:
-        req_here=os.getenv("API2","API")
-        req=requests.get(req_here)
-        data=json.loads(req.text)
-        return data
+    return 'Hello'
 
     
 if __name__ == '__main__':
