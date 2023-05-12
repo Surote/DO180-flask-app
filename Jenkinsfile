@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
       DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+      ROX_API_TOKEN = credentials('acs')
     }
     stages {
         stage('Stage checkout') {
@@ -21,6 +22,11 @@ pipeline {
         stage('Stage push') {
             steps {
                 sh 'podman push docker.io/surote/py-test-jenkins:0.1-$BRANCH_NAME'
+            }
+        }
+        stage('Stage scan') {
+            steps {
+                sh 'podman run -e ROX_API_TOKEN=$ROX_API_TOKEN  -it registry.redhat.io/advanced-cluster-security/rhacs-roxctl-rhel8:4.0.0 -e https://central-stackrox.apps.cluster-4v75k.4v75k.sandbox2150.opentlc.com image scan --image docker.io/surote/py-test-jenkins:0.1-$BRANCH_NAME'
             }
         }
     }
